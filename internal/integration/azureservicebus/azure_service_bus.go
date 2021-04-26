@@ -139,7 +139,7 @@ func (i *Integration) publishHTTP(ctx context.Context, event string, application
 		return errors.Wrap(err, "create sas token error")
 	}
 
-	ctxCancel, cancel := context.WithTimeout(ctx, time.Second)
+	ctxCancel, cancel := context.WithTimeout(ctx, 10*time.Second)
 	defer cancel()
 
 	req, err := http.NewRequestWithContext(ctxCancel, "POST", i.uri+"/messages", bytes.NewReader(b))
